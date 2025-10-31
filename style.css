@@ -1,0 +1,275 @@
+/* --- Імпорт Готичного Шрифту --- */
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
+/* --- Загальні стилі --- */
+body {
+    /* Готичний шрифт для основного тексту */
+    font-family: 'Georgia', 'Times New Roman', serif;
+    margin: 0;
+    background-color: #1a1a1a; /* Темний фон */
+    color: #CFB53B; /* Основний ЗОЛОТИЙ текст */
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    color: #0A6A44; /* Акцентний ЗЕЛЕНИЙ колір */
+    font-family: 'MedievalSharp', 'Garamond', serif; /* Готичний шрифт для заголовків */
+    text-transform: uppercase; /* Великі літери */
+    letter-spacing: 1px;
+}
+
+/* --- Хедер --- */
+.site-header {
+    background-color: #1f1f1f; /* Ще темніший фон */
+    color: #CFB53B;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #0A6A44; /* ЗЕЛЕНА рамка */
+}
+
+.logo-container .site-title {
+    font-size: 2.5em;
+    margin: 0;
+    font-weight: bold;
+}
+
+.logo-container .author-pseudo {
+    font-size: 1.2em;
+    margin: 0;
+    color: #AD9353; /* Приглушений золотий */
+    font-style: italic;
+}
+
+.main-nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.main-nav li {
+    display: inline-block;
+    margin-left: 25px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #CFB53B; /* Золотий */
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.main-nav a:hover,
+.main-nav a.active { 
+    color: #0A6A44; /* ЗЕЛЕНИЙ */
+}
+
+/* --- Головний контент --- */
+.welcome-section {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.welcome-section h1 {
+    font-size: 3em;
+}
+
+/* --- Сторінка "Книги" (Book Grid) --- */
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.book-card {
+    background-color: #1f1f1f; /* Дуже темний фон */
+    border-radius: 8px;
+    overflow: hidden;
+    /* Тінь тепер теж зелена */
+    box-shadow: 0 4px 10px rgba(10, 106, 68, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(10, 106, 68, 0.5); /* Яскравіша зелена тінь */
+}
+
+.book-card img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.book-card-content {
+    padding: 20px;
+}
+
+.book-card-content h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+.book-card-content p {
+    font-size: 0.95em;
+    line-height: 1.6;
+    color: #AD9353; /* Приглушений золотий */
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #0A6A44; /* ЗЕЛЕНИЙ фон */
+    color: #FFFFFF; /* Білий текст на кнопці для контрасту */
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    font-family: 'MedievalSharp', 'Garamond', serif; /* Готичний шрифт */
+    border: 1px solid #AD9353; /* Золота рамка */
+}
+
+.btn:hover {
+    background-color: #074C30; /* Темніший зелений */
+}
+
+
+/* --- Футер (для "Акаунтів") --- */
+.site-footer {
+    text-align: center;
+    padding: 30px;
+    background-color: #1f1f1f; /* Темний фон */
+    border-top: 3px solid #0A6A44; /* Зелена рамка */
+    margin-top: 40px;
+}
+
+.social-links a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #CFB53B; /* Золотий */
+    font-size: 1.2em;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #0A6A44; /* Зелений */
+}
+
+.site-footer p {
+    margin-top: 20px;
+    color: #AD9353; /* Приглушений золотий */
+    font-size: 0.9em;
+}
+
+/* --- Стилі для сторінки "Про автора" --- */
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 40px;
+    align-items: flex-start;
+    background-color: #1f1f1f; /* Темний фон */
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.about-text h3 {
+    margin-top: 0;
+    font-size: 1.8em;
+}
+
+.about-text p {
+    line-height: 1.7;
+    font-size: 1.1em;
+    color: #AD9353; /* Приглушений золотий */
+}
+
+.about-text em {
+    color: #0A6A44; /* Зелений */
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* --- Стилі для сторінки "Новини" (Блог) --- */
+.blog-list {
+    max-width: 800px; /* Робимо стрічку новин вужчою для читабельності */
+    margin: 0 auto;
+}
+
+.blog-post-card {
+    background-color: #1f1f1f;
+    padding: 25px 30px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    border-left: 5px solid #0A6A44; /* Зелений акцент */
+}
+
+.blog-post-card h3 {
+    margin-top: 0;
+    font-size: 1.8em;
+}
+
+.blog-post-card .post-meta {
+    font-size: 0.9em;
+    color: #AD9353;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.blog-post-card p {
+    color: #CFB53B;
+    line-height: 1.7;
+}
+
+/* --- Стилі для сторінки "Спільнота" (Соцмережі) --- */
+.social-links-page {
+    display: grid;
+    grid-template-columns: 1fr; /* Одна колонка */
+    gap: 20px;
+    max-width: 700px;
+    margin: 40px auto 0;
+}
+
+.social-link-button {
+    display: block;
+    padding: 25px 30px;
+    background-color: #1f1f1f;
+    color: #CFB53B;
+    text-decoration: none;
+    font-size: 1.8em;
+    font-family: 'MedievalSharp', 'Garamond', serif; /* Готичний шрифт */
+    border-radius: 8px;
+    border: 2px solid #AD9353;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.social-link-button:hover {
+    /* Використовуємо змінну --social-color, задану в HTML */
+    border-color: var(--social-color, #0A6A44);
+    color: var(--social-color, #0A6A44);
+    transform: scale(1.03);
+}
+
+.social-link-button span {
+    display: block;
+    font-size: 0.6em;
+    font-family: 'Georgia', serif; /* Звичайний шрифт для опису */
+    color: #AD9353;
+    margin-top: 5px;
+    font-style: italic;
+}
