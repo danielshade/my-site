@@ -460,3 +460,105 @@ h2 {
 }
 
 .social-links a:hover { opacity: 1; }
+
+/* --- НОВІ СТИЛІ ДЛЯ БЛОГУ (Розширені) --- */
+.blog-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* 2 частини для статей, 1 для меню */
+    gap: 40px;
+}
+
+/* Якщо екран малий (телефон), робити одну колонку */
+@media (max-width: 768px) {
+    .blog-layout { grid-template-columns: 1fr; }
+}
+
+.blog-main { display: flex; flex-direction: column; gap: 30px; }
+
+/* Картка статті з картинкою */
+.blog-card-full {
+    background: var(--bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #333;
+    transition: transform 0.3s;
+}
+
+.blog-card-full:hover { transform: translateY(-5px); border-color: var(--accent-gold); }
+
+.blog-thumb {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-bottom: 1px solid #333;
+}
+
+.blog-content { padding: 25px; }
+.blog-content h3 { color: var(--accent-gold); margin-top: 0; font-size: 1.8em; }
+.blog-date { color: var(--accent-green); font-size: 0.9em; margin-bottom: 10px; display: block; }
+
+/* Бічна панель (Сайдбар) */
+.blog-sidebar {
+    background: rgba(30, 30, 30, 0.5);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #333;
+    height: fit-content;
+}
+
+.sidebar-widget { margin-bottom: 30px; }
+.sidebar-title { 
+    font-family: var(--font-title); 
+    color: var(--accent-gold); 
+    border-bottom: 1px solid var(--accent-gold);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.category-list { list-style: none; padding: 0; }
+.category-list li { margin-bottom: 10px; }
+.category-list a { color: var(--text-muted); transition: 0.3s; }
+.category-list a:hover { color: var(--accent-green); padding-left: 5px; }
+
+
+/* --- СТИЛІ ДЛЯ ФОРМ (РЕЄСТРАЦІЯ) --- */
+.form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--accent-gold);
+    box-shadow: 0 0 20px rgba(197, 160, 89, 0.1);
+}
+
+.form-group { margin-bottom: 20px; text-align: left; }
+
+.form-label {
+    display: block;
+    color: var(--accent-gold);
+    margin-bottom: 8px;
+    font-family: var(--font-title);
+}
+
+/* Красиві поля вводу */
+.form-input, .form-textarea, .form-select {
+    width: 100%;
+    padding: 12px;
+    background: #121212;
+    border: 1px solid #444;
+    color: var(--text-main);
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 1em;
+    box-sizing: border-box; /* Щоб padding не ламав ширину */
+    transition: 0.3s;
+}
+
+.form-input:focus, .form-textarea:focus {
+    border-color: var(--accent-green);
+    outline: none;
+    box-shadow: 0 0 10px rgba(26, 92, 64, 0.5);
+}
+
+.form-textarea { resize: vertical; min-height: 100px; }
