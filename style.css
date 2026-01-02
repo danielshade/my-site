@@ -89,35 +89,60 @@ a { text-decoration: none; color: inherit; }
 .main-nav a:hover::after { width: 100%; }
 
 
-/* --- ГОЛОВНА: HERO SECTION (Банер) --- */
+/* --- HERO SECTION (Банери) --- */
 .hero-section {
-    background: linear-gradient(to bottom, rgba(0,0,0,0.6), var(--bg-dark)), url('images/hero-bg.jpg');
     background-size: cover;
     background-position: center;
-    height: 70vh;
+    height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: 20px;
+    margin-bottom: 40px;
+    border-bottom: 2px solid var(--accent-gold);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    position: relative;
 }
+
+/* Загальне затемнення для всіх банерів */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Темний фільтр */
+    z-index: 1;
+}
+
+/* Контент поверх затемнення */
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* Індивідуальні фони */
+.hero-home { background-image: url('images/hero-bg.jpg'); height: 80vh; }
+.hero-books { background-image: url('images/books-bg.jpg'); }
+.hero-about { background-image: url('images/about-bg.jpg'); }
+.hero-blog { background-image: url('images/blog-bg.jpg'); }
+.hero-socials { background-image: url('images/socials-bg.jpg'); }
 
 .hero-content h1 {
     font-family: var(--font-title);
-    font-size: 4em;
+    font-size: 3.5em;
     color: var(--accent-gold);
     margin-bottom: 10px;
-    text-shadow: 0 4px 10px rgba(0,0,0,0.8);
+    text-shadow: 0 4px 10px rgba(0,0,0,0.9);
     animation: fadeIn 1.2s ease-out;
 }
 
 .hero-content p {
-    font-size: 1.4em;
+    font-size: 1.3em;
     max-width: 700px;
     margin-bottom: 30px;
     color: #f0f0f0;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+    text-shadow: 0 2px 5px rgba(0,0,0,0.9);
     animation: fadeIn 1.5s ease-out;
 }
 
@@ -359,6 +384,12 @@ h2 {
     margin-bottom: 30px;
     border-left: 5px solid var(--accent-green);
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+}
+
+.blog-post-card:hover {
+    transform: translateX(10px);
+    border-left-color: var(--accent-gold);
 }
 
 .blog-post-card h3 { margin-top: 0; font-size: 1.8em; color: var(--accent-gold); }
@@ -376,7 +407,7 @@ h2 {
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
-    max-width: 700px;
+    max-width: 600px;
     margin: 40px auto 0;
 }
 
@@ -386,30 +417,32 @@ h2 {
     background-color: var(--bg-card);
     color: var(--accent-gold);
     text-decoration: none;
-    font-size: 1.8em;
+    font-size: 1.5em;
     font-family: var(--font-title);
     border-radius: 8px;
     border: 2px solid #333;
     transition: all 0.3s ease;
     text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .social-link-button:hover {
-    border-color: var(--social-color, var(--accent-green));
-    color: var(--social-color, var(--accent-green));
+    border-color: var(--accent-green);
+    background-color: #151515;
     transform: scale(1.02);
 }
 
 .social-link-button span {
-    display: block;
-    font-size: 0.6em;
+    font-size: 0.7em;
     font-family: var(--font-body);
     color: var(--text-muted);
-    margin-top: 5px;
     font-style: italic;
 }
 
 
+/* --- ФУТЕР --- */
 .site-footer {
     background-color: #0d0d0d;
     text-align: center;
