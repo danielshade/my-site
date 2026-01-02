@@ -562,3 +562,111 @@ h2 {
 }
 
 .form-textarea { resize: vertical; min-height: 100px; }
+
+/* --- СТОРІНКА ПЕРСОНАЖІВ --- */
+.character-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.character-card {
+    background-color: var(--bg-card);
+    border: 1px solid #333;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.4);
+    position: relative;
+    text-align: center;
+}
+
+.character-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-gold);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.6);
+}
+
+.character-card img {
+    width: 100%;
+    height: 350px; /* Фіксована висота для всіх зображень */
+    object-fit: cover; /* Обрізає, щоб заповнити простір */
+    filter: brightness(0.9);
+    transition: filter 0.3s;
+}
+
+.character-card:hover img {
+    filter: brightness(1.1);
+}
+
+.character-info {
+    padding: 20px;
+}
+
+.character-info h3 {
+    font-family: var(--font-title);
+    color: var(--accent-gold);
+    font-size: 1.8em;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.character-info .role {
+    font-size: 0.9em;
+    color: var(--accent-green);
+    font-style: italic;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.character-info p {
+    color: var(--text-muted);
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+/* Кнопка "Дізнатися більше" для персонажів */
+.character-card .btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 20px;
+    font-size: 0.9em;
+}
+
+.hero-socials { background-image: url('images/socials-bg.jpg'); }
+.hero-characters { background-image: url('images/characters-bg.jpg'); } /* НОВЕ! */
+
+/* --- АТМОСФЕРНИЙ ПЛЕЄР --- */
+.music-player-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1001;
+}
+
+.music-toggle-btn {
+    background-color: var(--accent-green);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(26, 92, 64, 0.6);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.music-toggle-btn:hover {
+    background-color: var(--accent-gold);
+    transform: scale(1.05);
+}
+
+/* Прихований YouTube плеєр */
+.hidden-youtube-player {
+    display: none; /* За замовчуванням прихований */
+}

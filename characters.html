@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Гільдія Тіней - Головна</title>
+    <title>Персонажі Гільдії Тіней</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,36 +17,56 @@
             <ul>
                 <li><a href="index.html">Головна</a></li>
                 <li><a href="books.html">Книги</a></li>
-                <li><a href="characters.html">Персонажі</a></li> <li><a href="about.html">Про автора</a></li>
+                <li><a href="characters.html" class="active">Персонажі</a></li> <li><a href="about.html">Про автора</a></li>
                 <li><a href="blog.html">Новини</a></li>
                 <li><a href="signup.html" style="color: var(--accent-green); font-weight: bold;">Вступ</a></li>
             </ul>
         </nav>
     </header>
 
-    <section class="hero-section hero-home">
+    <section class="hero-section hero-characters">
         <div class="hero-content">
-            <h1>Вітаємо в Гільдії</h1>
-            <p>Тут оживають історії, народжені в сутінках.</p>
-            <a href="books.html" class="btn">Відкрити Бібліотеку</a>
+            <h1>Лики Тіней</h1>
+            <p>Герої та антигерої, що плетуть павутину долі.</p>
         </div>
     </section>
 
     <main class="container">
-        <div class="section-title-wrapper">
-            <h2>Остання Новинка</h2>
-        </div>
         
-        <div class="book-grid">
-            <div class="book-card">
-                <img src="images/book1.jpg" alt="Обкладинка Посміхнися Відчаю">
-                <div class="book-card-content">
-                    <h3>Посміхнися Відчаю</h3>
-                    <p>Жахаюча мить, коли небо впало на землю. Безсмертя стало ознакою гріха. Новий Світ на старих землях почав розбудовувати свої холодні машини. Серед мороку де-не-де б'ються маленькі іскри.</p>
-                    <a href="books.html" class="btn">Дізнатися більше</a>
+        <div class="character-grid">
+            
+            <div class="character-card">
+                <img src="images/character1.jpg" alt="Ім'я Персонажа 1">
+                <div class="character-info">
+                    <h3>Астрал</h3>
+                    <span class="role">Воїн Тіні</span>
+                    <p>Таємничий воїн, що блукає між світами, шукаючи відповіді на забуті питання.</p>
+                    <a href="#" class="btn">Дізнатися більше</a>
                 </div>
             </div>
-        </div>
+
+            <div class="character-card">
+                <img src="images/character2.jpg" alt="Ім'я Персонажа 2">
+                <div class="character-info">
+                    <h3>Ліліс</h3>
+                    <span class="role">Маг Хаосу</span>
+                    <p>Заклинателька древніх заклять, чия магія може як руйнувати, так і творити дива.</p>
+                    <a href="#" class="btn">Дізнатися більше</a>
+                </div>
+            </div>
+
+            <div class="character-card">
+                <img src="images/character3.jpg" alt="Ім'я Персонажа 3">
+                <div class="character-info">
+                    <h3>Варан</h3>
+                    <span class="role">Мисливець за реліквіями</span>
+                    <p>Хитрий і безстрашний шукач артефактів, який знає всі приховані стежки.</p>
+                    <a href="#" class="btn">Дізнатися більше</a>
+                </div>
+            </div>
+
+            </div>
+
     </main>
 
     <footer class="site-footer">
@@ -104,5 +124,6 @@
             });
         }
     </script>
+
 </body>
 </html>
