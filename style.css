@@ -1,11 +1,11 @@
-/* --- БАЗОВІ НАЛАШТУВАННЯ (БЕЗ КОНФЛІКТІВ) --- */
+/* --- 1. ШРИФТИ ТА ОСНОВА --- */
 @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Lora:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
     --bg-dark: #121212;
     --bg-card: #1E1E1E;
-    --accent-primary: #c5a059;
-    --accent-secondary: #1a5c40;
+    --accent-primary: #c5a059; /* Золото */
+    --accent-secondary: #1a5c40; /* Смарагд */
     --text-main: #e0e0e0;
     --text-muted: #a0a0a0;
     --font-title: 'MedievalSharp', cursive;
@@ -13,10 +13,11 @@
 }
 
 body.abyss-mode {
-    --accent-primary: #a0aec0;
-    --accent-secondary: #2c5282;
+    --accent-primary: #a0aec0; /* Срібло */
+    --accent-secondary: #2c5282; /* Синій */
 }
 
+/* Скидання налаштувань браузера */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -27,18 +28,32 @@ body {
     overflow-x: hidden;
 }
 
-/* КОНТЕЙНЕР (Тримає все купи) */
 .container {
     width: 90%;
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 60px 0;
+    padding: 40px 0;
 }
 
-/* ХЕДЕР */
+/* --- 2. МАГІЧНИЙ КУРСОР --- */
+#magic-cursor {
+    width: 20px; height: 20px;
+    background: var(--accent-primary);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 99999;
+    mix-blend-mode: difference;
+    filter: blur(4px);
+    transition: transform 0.1s ease-out;
+}
+
+@media (max-width: 768px) { #magic-cursor { display: none; } }
+
+/* --- 3. ХЕДЕР ТА НАВІГАЦІЯ --- */
 .site-header {
-    background: rgba(18, 18, 18, 0.98);
-    padding: 20px 5%;
+    background-color: rgba(18, 18, 18, 0.98);
+    padding: 15px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -46,99 +61,137 @@ body {
     position: sticky; top: 0; z-index: 1000;
 }
 
+.site-title { font-family: var(--font-title); color: var(--accent-primary); font-size: 1.8em; }
 .main-nav ul { list-style: none; display: flex; gap: 20px; }
-.main-nav a { text-decoration: none; color: var(--text-main); font-family: var(--font-title); }
+.main-nav a { text-decoration: none; color: var(--text-main); font-family: var(--font-title); transition: 0.3s; }
 .main-nav a:hover, .main-nav a.active { color: var(--accent-primary); }
 
-/* HERO (БАHEP) */
+/* --- 4. БАНЕРИ (HERO) --- */
 .hero-section {
     background-size: cover; background-position: center;
     height: 50vh; display: flex; justify-content: center; align-items: center;
     text-align: center; position: relative; border-bottom: 2px solid var(--accent-primary);
 }
-.hero-section::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); }
-.hero-content { position: relative; z-index: 2; }
-.hero-content h1 { font-family: var(--font-title); font-size: 3.5em; color: var(--accent-primary); }
-.hero-about { background-image: url('images/about-bg.jpg'); }
 
-/* ПРО АВТОРА (СІТКА) */
-.about-grid-layout {
-    display: grid;
-    grid-template-columns: 350px 1fr; /* Жорстка ширина для фотоколонки */
-    gap: 50px;
-    align-items: start;
-    margin-bottom: 80px;
+.hero-section::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
 }
 
-.about-image-side { text-align: center; }
+.hero-content { position: relative; z-index: 2; padding: 0 20px; }
+.hero-content h1 { font-family: var(--font-title); font-size: 3em; color: var(--accent-primary); }
+
+/* Індивідуальні фони для банерів */
+.hero-home { background-image: url('images/hero-bg.jpg'); height: 75vh; }
+.hero-books { background-image: url('images/books-bg.jpg'); }
+.hero-characters { background-image: url('images/characters-bg.jpg'); }
+.hero-about { background-image: url('images/about-bg.jpg'); }
+.hero-blog { background-image: url('images/blog-bg.jpg'); }
+.hero-socials { background-image: url('images/socials-bg.jpg'); }
+
+/* --- 5. СТОРІНКА ПРО АВТОРА (Виправлення розмірів) --- */
+.about-grid-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.about-image-side {
+    flex: 0 1 320px; /* Фото не буде більше 320px */
+}
 
 .author-glow-card {
     border: 1px solid var(--accent-primary);
     padding: 10px;
     background: var(--bg-card);
     border-radius: 15px;
-    box-shadow: 0 0 20px rgba(197,160,89,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .author-glow-card img {
     width: 100%; height: auto; border-radius: 10px; display: block;
 }
 
-/* RPG СТАТИСТИКА */
-.author-stats { margin-top: 30px; text-align: left; }
+.about-text-side {
+    flex: 1 1 450px; /* Текст займає решту місця */
+}
+
+.about-text-side h3 { font-family: var(--font-title); font-size: 2.5em; color: var(--accent-primary); margin-bottom: 20px; }
+
+/* RPG Статистика */
+.author-stats { margin-top: 30px; }
 .stat-row { margin-bottom: 15px; }
 .stat-label { display: flex; justify-content: space-between; font-family: var(--font-title); font-size: 0.8em; color: var(--accent-primary); margin-bottom: 5px; }
 .stat-bar-bg { background: #333; height: 6px; border-radius: 3px; }
-.stat-bar-fill { background: var(--accent-primary); height: 100%; border-radius: 3px; transition: 2s; }
+.stat-bar-fill { background: var(--accent-primary); height: 100%; border-radius: 3px; transition: 2s ease-out; }
 
-/* ТЕКСТ */
-.about-text-side h3 { font-family: var(--font-title); font-size: 3em; color: var(--accent-primary); margin-bottom: 10px; }
-.about-text-side p { margin-bottom: 20px; font-size: 1.1em; color: var(--text-muted); }
-
-/* ЦИТАТА */
-.quote-section {
-    background: rgba(197, 160, 89, 0.05);
-    border: 1px solid var(--accent-primary);
-    padding: 50px;
-    border-radius: 20px;
-    text-align: center;
-    margin: 80px 0;
-    font-style: italic;
-    font-size: 1.5em;
-}
-
-/* АНКЕТА (АРСЕНАЛ) */
-.arsenal-grid {
+/* --- 6. КАРТКИ (Книги, Персонажі, Новини) --- */
+.book-grid, .character-grid, .facts-grid, .arsenal-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
 }
-.arsenal-card {
+
+.book-card, .character-card, .fact-card, .arsenal-card, .blog-post-card {
     background: var(--bg-card);
-    padding: 30px;
     border: 1px solid #333;
     border-radius: 12px;
-    text-align: center;
+    overflow: hidden;
+    transition: 0.3s ease;
+    padding: 15px;
+}
+
+.book-card:hover, .character-card:hover, .arsenal-card:hover { border-color: var(--accent-primary); transform: translateY(-5px); }
+
+.book-card img, .character-card img {
+    width: 100%; height: 380px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;
+}
+
+/* --- 7. КНОПКИ ТА ЕЛЕМЕНТИ --- */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: linear-gradient(45deg, var(--accent-secondary), #0d3828);
+    color: white;
+    font-family: var(--font-title);
+    text-decoration: none;
+    border: 1px solid var(--accent-primary);
+    cursor: pointer;
     transition: 0.3s;
 }
-.arsenal-card:hover { border-color: var(--accent-primary); transform: translateY(-5px); }
-.arsenal-card h4 { font-family: var(--font-title); color: var(--accent-primary); margin: 15px 0; }
 
-/* КНОПКИ ТА КЕРУВАННЯ */
-.btn {
-    display: inline-block; padding: 12px 30px; background: var(--accent-secondary);
-    color: white; text-decoration: none; font-family: var(--font-title); border: 1px solid var(--accent-primary);
+.btn:hover { background: var(--accent-primary); color: var(--bg-dark); }
+
+.cycle-badge { background: var(--accent-secondary); color: white; padding: 4px 10px; font-size: 0.75em; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
+
+/* --- 8. СПІЛЬНОТА ТА БЛОГ --- */
+.social-links-page { max-width: 600px; margin: 0 auto; }
+.social-link-button {
+    display: block; padding: 20px; background: var(--bg-card);
+    border: 1px solid #333; color: var(--accent-primary);
+    text-decoration: none; border-radius: 8px; margin-bottom: 15px; text-align: center;
 }
 
-.controls-container { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 9999; }
-.control-btn { width: 50px; height: 50px; border-radius: 50%; background: var(--bg-card); border: 2px solid var(--accent-primary); color: var(--accent-primary); cursor: pointer; }
+/* --- 9. ПАНЕЛЬ КЕРУВАННЯ (КУТОК) --- */
+.controls-container {
+    position: fixed; bottom: 20px; right: 20px;
+    display: flex; flex-direction: column; gap: 10px; z-index: 10001;
+}
 
-/* МАГІЧНИЙ КУРСОР */
-#magic-cursor { width: 20px; height: 20px; background: var(--accent-primary); border-radius: 50%; position: fixed; pointer-events: none; z-index: 99999; mix-blend-mode: difference; filter: blur(4px); }
+.control-btn {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--bg-card); border: 2px solid var(--accent-primary);
+    color: var(--accent-primary); cursor: pointer; font-size: 1.2em;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
 
-/* АДАПТИВНІСТЬ */
-@media (max-width: 900px) {
-    .about-grid-layout { grid-template-columns: 1fr; }
-    .site-header { flex-direction: column; text-align: center; }
-    .main-nav ul { margin-top: 15px; flex-wrap: wrap; justify-content: center; }
+/* --- 10. АДАПТИВНІСТЬ --- */
+@media (max-width: 768px) {
+    .site-header { flex-direction: column; gap: 15px; }
+    .main-nav ul { flex-wrap: wrap; justify-content: center; font-size: 0.9em; }
+    .hero-content h1 { font-size: 2em; }
+    .container { width: 92%; }
 }
