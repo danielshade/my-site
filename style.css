@@ -1,4 +1,4 @@
-/* --- 1. ШРИФТИ ТА ОСНОВА --- */
+/* --- 1. БАЗОВІ НАЛАШТУВАННЯ --- */
 @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Lora:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
@@ -17,7 +17,6 @@ body.abyss-mode {
     --accent-secondary: #2c5282; /* Синій */
 }
 
-/* Скидання налаштувань браузера */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -30,94 +29,82 @@ body {
 
 .container {
     width: 90%;
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 40px 0;
+    padding: 60px 0;
 }
 
-/* --- 2. МАГІЧНИЙ КУРСОР --- */
+/* --- 2. МАГІЧНИЙ КУРСОР ТА ПАНЕЛЬ --- */
 #magic-cursor {
-    width: 20px; height: 20px;
-    background: var(--accent-primary);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 99999;
-    mix-blend-mode: difference;
-    filter: blur(4px);
+    width: 20px; height: 20px; background: var(--accent-primary);
+    border-radius: 50%; position: fixed; pointer-events: none;
+    z-index: 99999; mix-blend-mode: difference; filter: blur(4px);
     transition: transform 0.1s ease-out;
 }
-
 @media (max-width: 768px) { #magic-cursor { display: none; } }
 
-/* --- 3. ХЕДЕР ТА НАВІГАЦІЯ --- */
+.controls-container {
+    position: fixed; bottom: 20px; right: 20px;
+    display: flex; flex-direction: column; gap: 10px; z-index: 9999;
+}
+.control-btn {
+    width: 50px; height: 50px; border-radius: 50%;
+    background: var(--bg-card); border: 2px solid var(--accent-primary);
+    color: var(--accent-primary); cursor: pointer; display: flex;
+    align-items: center; justify-content: center; font-size: 1.2em;
+}
+
+/* --- 3. ХЕДЕР ТА БАНЕРИ --- */
 .site-header {
-    background-color: rgba(18, 18, 18, 0.98);
-    padding: 15px 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background: rgba(18, 18, 18, 0.98); padding: 20px 5%;
+    display: flex; justify-content: space-between; align-items: center;
     border-bottom: 2px solid var(--accent-primary);
     position: sticky; top: 0; z-index: 1000;
 }
-
-.site-title { font-family: var(--font-title); color: var(--accent-primary); font-size: 1.8em; }
 .main-nav ul { list-style: none; display: flex; gap: 20px; }
-.main-nav a { text-decoration: none; color: var(--text-main); font-family: var(--font-title); transition: 0.3s; }
+.main-nav a { text-decoration: none; color: var(--text-main); font-family: var(--font-title); }
 .main-nav a:hover, .main-nav a.active { color: var(--accent-primary); }
 
-/* --- 4. БАНЕРИ (HERO) --- */
 .hero-section {
-    background-size: cover; background-position: center;
-    height: 50vh; display: flex; justify-content: center; align-items: center;
+    background-size: cover; background-position: center; height: 50vh;
+    display: flex; justify-content: center; align-items: center;
     text-align: center; position: relative; border-bottom: 2px solid var(--accent-primary);
 }
+.hero-section::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); }
+.hero-content { position: relative; z-index: 2; }
+.hero-content h1 { font-family: var(--font-title); font-size: 3.5em; color: var(--accent-primary); }
 
-.hero-section::before {
-    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.6);
-}
-
-.hero-content { position: relative; z-index: 2; padding: 0 20px; }
-.hero-content h1 { font-family: var(--font-title); font-size: 3em; color: var(--accent-primary); }
-
-/* Індивідуальні фони для банерів */
+/* Фони */
 .hero-home { background-image: url('images/hero-bg.jpg'); height: 75vh; }
-.hero-books { background-image: url('images/books-bg.jpg'); }
-.hero-characters { background-image: url('images/characters-bg.jpg'); }
 .hero-about { background-image: url('images/about-bg.jpg'); }
+.hero-books { background-image: url('images/books-bg.jpg'); }
 .hero-blog { background-image: url('images/blog-bg.jpg'); }
 .hero-socials { background-image: url('images/socials-bg.jpg'); }
+.hero-characters { background-image: url('images/characters-bg.jpg'); }
 
-/* --- 5. СТОРІНКА ПРО АВТОРА (Виправлення розмірів) --- */
+/* --- 4. ГОЛОВНИЙ ФІКС: СТОРІНКА ПРО АВТОРА --- */
 .about-grid-layout {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 50px;
-    align-items: flex-start;
-    justify-content: center;
+    display: flex; flex-wrap: wrap; gap: 50px; align-items: flex-start; justify-content: center;
 }
 
+/* Цей блок контролює розмір фото автора! */
 .about-image-side {
-    flex: 0 1 320px; /* Фото не буде більше 320px */
+    flex: 0 1 350px; /* Максимальна ширина фото 350px */
+    width: 100%;
 }
 
 .author-glow-card {
-    border: 1px solid var(--accent-primary);
-    padding: 10px;
-    background: var(--bg-card);
-    border-radius: 15px;
+    border: 1px solid var(--accent-primary); padding: 10px;
+    background: var(--bg-card); border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .author-glow-card img {
     width: 100%; height: auto; border-radius: 10px; display: block;
+    object-fit: contain; /* Зображення зберігає пропорції */
 }
 
-.about-text-side {
-    flex: 1 1 450px; /* Текст займає решту місця */
-}
-
+.about-text-side { flex: 1 1 450px; }
 .about-text-side h3 { font-family: var(--font-title); font-size: 2.5em; color: var(--accent-primary); margin-bottom: 20px; }
 
 /* RPG Статистика */
@@ -125,73 +112,31 @@ body {
 .stat-row { margin-bottom: 15px; }
 .stat-label { display: flex; justify-content: space-between; font-family: var(--font-title); font-size: 0.8em; color: var(--accent-primary); margin-bottom: 5px; }
 .stat-bar-bg { background: #333; height: 6px; border-radius: 3px; }
-.stat-bar-fill { background: var(--accent-primary); height: 100%; border-radius: 3px; transition: 2s ease-out; }
+.stat-bar-fill { background: var(--accent-primary); height: 100%; border-radius: 3px; transition: 2s; }
 
-/* --- 6. КАРТКИ (Книги, Персонажі, Новини) --- */
-.book-grid, .character-grid, .facts-grid, .arsenal-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+/* --- 5. СІТКИ (КНИГИ ТА ПЕРСОНАЖІ) --- */
+.book-grid, .character-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;
 }
-
-.book-card, .character-card, .fact-card, .arsenal-card, .blog-post-card {
-    background: var(--bg-card);
-    border: 1px solid #333;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: 0.3s ease;
-    padding: 15px;
+.book-card, .character-card {
+    background: var(--bg-card); border: 1px solid #333; border-radius: 12px; overflow: hidden; transition: 0.3s;
 }
-
-.book-card:hover, .character-card:hover, .arsenal-card:hover { border-color: var(--accent-primary); transform: translateY(-5px); }
-
 .book-card img, .character-card img {
-    width: 100%; height: 380px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;
+    width: 100%; height: 380px; object-fit: cover; /* Всі картинки в сітці будуть однієї висоти */
 }
+.book-card-content, .character-info { padding: 20px; }
 
-/* --- 7. КНОПКИ ТА ЕЛЕМЕНТИ --- */
+/* --- 6. КНОПКИ ТА АДАПТИВНІСТЬ --- */
 .btn {
-    display: inline-block;
-    padding: 12px 25px;
-    background: linear-gradient(45deg, var(--accent-secondary), #0d3828);
-    color: white;
-    font-family: var(--font-title);
-    text-decoration: none;
-    border: 1px solid var(--accent-primary);
-    cursor: pointer;
-    transition: 0.3s;
+    display: inline-block; padding: 12px 30px; background: var(--accent-secondary);
+    color: white; text-decoration: none; font-family: var(--font-title);
+    border: 1px solid var(--accent-primary); transition: 0.3s;
 }
-
 .btn:hover { background: var(--accent-primary); color: var(--bg-dark); }
 
-.cycle-badge { background: var(--accent-secondary); color: white; padding: 4px 10px; font-size: 0.75em; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
-
-/* --- 8. СПІЛЬНОТА ТА БЛОГ --- */
-.social-links-page { max-width: 600px; margin: 0 auto; }
-.social-link-button {
-    display: block; padding: 20px; background: var(--bg-card);
-    border: 1px solid #333; color: var(--accent-primary);
-    text-decoration: none; border-radius: 8px; margin-bottom: 15px; text-align: center;
-}
-
-/* --- 9. ПАНЕЛЬ КЕРУВАННЯ (КУТОК) --- */
-.controls-container {
-    position: fixed; bottom: 20px; right: 20px;
-    display: flex; flex-direction: column; gap: 10px; z-index: 10001;
-}
-
-.control-btn {
-    width: 48px; height: 48px; border-radius: 50%;
-    background: var(--bg-card); border: 2px solid var(--accent-primary);
-    color: var(--accent-primary); cursor: pointer; font-size: 1.2em;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-}
-
-/* --- 10. АДАПТИВНІСТЬ --- */
-@media (max-width: 768px) {
-    .site-header { flex-direction: column; gap: 15px; }
-    .main-nav ul { flex-wrap: wrap; justify-content: center; font-size: 0.9em; }
-    .hero-content h1 { font-size: 2em; }
-    .container { width: 92%; }
+@media (max-width: 900px) {
+    .site-header { flex-direction: column; text-align: center; gap: 15px; }
+    .main-nav ul { flex-wrap: wrap; justify-content: center; }
+    .hero-content h1 { font-size: 2.2em; }
+    .about-image-side { flex: 0 1 280px; } /* На смартфонах ще трохи менше */
 }
