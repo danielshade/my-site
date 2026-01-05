@@ -8,6 +8,8 @@
 </head>
 <body>
 
+    <div id="magic-cursor"></div>
+
     <header class="site-header">
         <div class="logo-container">
             <h1 class="site-title">Гільдія Тіней</h1>
@@ -17,9 +19,10 @@
             <ul>
                 <li><a href="index.html">Головна</a></li>
                 <li><a href="books.html">Книги</a></li>
-                <li><a href="characters.html">Персонажі</a></li> <li><a href="about.html">Про автора</a></li>
+                <li><a href="characters.html">Персонажі</a></li>
+                <li><a href="about.html">Про автора</a></li>
                 <li><a href="blog.html">Новини</a></li>
-                <li><a href="signup.html" style="color: var(--accent-green); font-weight: bold;">Вступ</a></li>
+                <li><a href="signup.html" style="color: var(--accent-secondary); font-weight: bold;">Вступ</a></li>
             </ul>
         </nav>
     </header>
@@ -32,7 +35,6 @@
     </section>
 
     <main class="container">
-        
         <div class="social-links-page">
             
             <a href="https://t.me/+EIVbKcgmEjAzOGJi" class="social-link-button" target="_blank">
@@ -50,7 +52,7 @@
                 <span>Читати книги онлайн</span>
             </a>
 
-             <a href="mailto:example@gmail.com" class="social-link-button">
+             <a href="mailto:danylovol13@gmail.com" class="social-link-button">
                 Написати автору
                 <span>Співпраця та відгуки</span>
             </a>
@@ -67,29 +69,50 @@
         <p>© 2025 Тінник. Всі права захищено.</p>
     </footer>
 
-    <div class="music-player-container">
-        <button id="musicToggle" class="music-toggle-btn">🎵</button>
-        <div id="player-wrapper" style="display: none;">
-            <div id="youtubePlayer"></div>
-        </div>
+    <div class="controls-container">
+        <button class="control-btn" id="themeBtn">🌒</button>
+        <button class="control-btn" id="musicToggle">🎵</button>
     </div>
+
+    <div id="youtubePlayer" style="display:none;"></div>
 
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
+        // 1. МАГІЧНИЙ КУРСОР
+        const cursor = document.getElementById('magic-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX - 10 + 'px';
+            cursor.style.top = e.clientY - 10 + 'px';
+        });
+
+        // 2. ПЕРЕМИКАЧ ТЕМ (Сутінки / Безодня)
+        const themeBtn = document.getElementById('themeBtn');
+        if (localStorage.getItem('theme') === 'abyss') {
+            document.body.classList.add('abyss-mode');
+            themeBtn.textContent = '🌑';
+        }
+
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('abyss-mode');
+            const isAbyss = document.body.classList.contains('abyss-mode');
+            localStorage.setItem('theme', isAbyss ? 'abyss' : 'twilight');
+            themeBtn.textContent = isAbyss ? '🌑' : '🌒';
+        });
+
+        // 3. МУЗИЧНИЙ ПЛЕЄР
         let player;
         let isPlaying = false;
-        const btn = document.getElementById('musicToggle');
+        const musicBtn = document.getElementById('musicToggle');
 
-        // Функція ініціалізації плеєра від Google API
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('youtubePlayer', {
                 height: '0',
                 width: '0',
-                videoId: 'dzCuwjHFd7M', // ВАШ ID ВІДЕО
+                videoId: 'dzCuwjHFd7M',
                 playerVars: {
                     'autoplay': 0,
                     'loop': 1,
-                    'playlist': 'dzCuwjHFd7M', // Для повтору
+                    'playlist': 'dzCuwjHFd7M',
                     'controls': 0
                 },
                 events: {
@@ -99,15 +122,13 @@
         }
 
         function onPlayerReady(event) {
-            btn.addEventListener('click', () => {
+            musicBtn.addEventListener('click', () => {
                 if (!isPlaying) {
                     player.playVideo();
-                    btn.textContent = '⏸️';
-                    btn.style.backgroundColor = '#c5a059'; // Змінюємо на золото, коли грає
+                    musicBtn.textContent = '⏸️';
                 } else {
                     player.pauseVideo();
-                    btn.textContent = '🎵';
-                    btn.style.backgroundColor = '#1a5c40'; // Повертаємо зелений
+                    musicBtn.textContent = '🎵';
                 }
                 isPlaying = !isPlaying;
             });

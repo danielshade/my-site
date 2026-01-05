@@ -8,6 +8,8 @@
 </head>
 <body>
 
+    <div id="magic-cursor"></div>
+
     <header class="site-header">
         <div class="logo-container">
             <h1 class="site-title">Гільдія Тіней</h1>
@@ -17,9 +19,10 @@
             <ul>
                 <li><a href="index.html">Головна</a></li>
                 <li><a href="books.html">Книги</a></li>
-                <li><a href="characters.html" class="active">Персонажі</a></li> <li><a href="about.html">Про автора</a></li>
+                <li><a href="characters.html" class="active">Персонажі</a></li>
+                <li><a href="about.html">Про автора</a></li>
                 <li><a href="blog.html">Новини</a></li>
-                <li><a href="signup.html" style="color: var(--accent-green); font-weight: bold;">Вступ</a></li>
+                <li><a href="signup.html" style="color: var(--accent-secondary); font-weight: bold;">Вступ</a></li>
             </ul>
         </nav>
     </header>
@@ -32,98 +35,86 @@
     </section>
 
     <main class="container">
-        
         <div class="character-grid">
             
             <div class="character-card">
-                <img src="images/character1.webp" alt="Ім'я Персонажа 1">
+                <img src="images/character1.webp" alt="Магнус Пріам">
                 <div class="character-info">
                     <h3>Магнус Пріам</h3>
                     <span class="role">Напівбог</span>
-                    <p>Останній Курфюрст Беллонії та Глава Ордену Тризубця.</p>
-                    <a href="#" class="btn">Дізнатися більше</a>
+                    <p>Останній Курфюрст Беллонії та Глава Ордену Тризубця. Носій давньої крові.</p>
+                    <a href="#" class="btn">Біографія</a>
                 </div>
             </div>
 
             <div class="character-card">
-                <img src="images/character2.jpg" alt="Ім'я Персонажа 2">
+                <img src="images/character2.jpg" alt="Таємниця">
                 <div class="character-info">
-                    <h3>Таємниця</h3>
-                    <span class="role">Невідомо</span>
-                    <p>Ще буде...</p>
-                    <a href="#" class="btn">Дізнатися більше</a>
+                    <h3>Раджа</h3>
+                    <span class="role">Золотий підліток</span>
+                    <p>Той, чиє ім'я шепочуть у сонячних залах, але чия доля прихована в пісках часу.</p>
+                    <a href="#" class="btn">Досьє</a>
                 </div>
             </div>
 
             <div class="character-card">
-                <img src="images/character3.jpg" alt="Ім'я Персонажа 3">
+                <img src="images/character3.jpg" alt="Етер">
                 <div class="character-info">
-                    <h3>Невідомо</h3>
-                    <span class="role">Невідомо</span>
-                    <p>Ще буде...</p>
-                    <a href="#" class="btn">Дізнатися більше</a>
+                    <h3>Етер</h3>
+                    <span class="role">Мандрівник</span>
+                    <p>Він прийшов нізвідки і шукає те, що неможливо знайти у цьому світі.</p>
+                    <a href="#" class="btn">Спогади</a>
                 </div>
             </div>
 
-            </div>
-
+        </div>
     </main>
 
     <footer class="site-footer">
-        <div class="social-links">
-            <a href="https://t.me/+EIVbKcgmEjAzOGJi" target="_blank">Telegram</a>
-            <a href="https://www.youtube.com/@mr.danielshade6575" target="_blank">Youtube</a>
-            <a href="https://arkush.net/user/15018" target="_blank">Аркуш</a>
-        </div>
         <p>© 2025 Тінник. Всі права захищено.</p>
     </footer>
 
-    <div class="music-player-container">
-        <button id="musicToggle" class="music-toggle-btn">🎵</button>
-        <div id="player-wrapper" style="display: none;">
-            <div id="youtubePlayer"></div>
-        </div>
+    <div class="controls-container">
+        <button class="control-btn" id="themeBtn">🌒</button>
+        <button class="control-btn" id="musicToggle">🎵</button>
     </div>
+    <div id="youtubePlayer" style="display:none;"></div>
 
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
+        const cursor = document.getElementById('magic-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX - 10 + 'px';
+            cursor.style.top = e.clientY - 10 + 'px';
+        });
+
+        const themeBtn = document.getElementById('themeBtn');
+        if (localStorage.getItem('theme') === 'abyss') {
+            document.body.classList.add('abyss-mode');
+            themeBtn.textContent = '🌑';
+        }
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('abyss-mode');
+            const isAbyss = document.body.classList.contains('abyss-mode');
+            localStorage.setItem('theme', isAbyss ? 'abyss' : 'twilight');
+            themeBtn.textContent = isAbyss ? '🌑' : '🌒';
+        });
+
         let player;
         let isPlaying = false;
-        const btn = document.getElementById('musicToggle');
-
-        // Функція ініціалізації плеєра від Google API
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('youtubePlayer', {
-                height: '0',
-                width: '0',
-                videoId: 'dzCuwjHFd7M', // ВАШ ID ВІДЕО
-                playerVars: {
-                    'autoplay': 0,
-                    'loop': 1,
-                    'playlist': 'dzCuwjHFd7M', // Для повтору
-                    'controls': 0
-                },
-                events: {
-                    'onReady': onPlayerReady
-                }
-            });
-        }
-
-        function onPlayerReady(event) {
-            btn.addEventListener('click', () => {
-                if (!isPlaying) {
-                    player.playVideo();
-                    btn.textContent = '⏸️';
-                    btn.style.backgroundColor = '#c5a059'; // Змінюємо на золото, коли грає
-                } else {
-                    player.pauseVideo();
-                    btn.textContent = '🎵';
-                    btn.style.backgroundColor = '#1a5c40'; // Повертаємо зелений
-                }
-                isPlaying = !isPlaying;
+                height: '0', width: '0', videoId: 'dzCuwjHFd7M',
+                playerVars: { 'autoplay': 0, 'loop': 1, 'playlist': 'dzCuwjHFd7M' },
+                events: { 'onReady': () => {
+                    document.getElementById('musicToggle').addEventListener('click', () => {
+                        if (!isPlaying) { player.playVideo(); document.getElementById('musicToggle').textContent = '⏸️'; }
+                        else { player.pauseVideo(); document.getElementById('musicToggle').textContent = '🎵'; }
+                        isPlaying = !isPlaying;
+                    });
+                }}
             });
         }
     </script>
-
 </body>
 </html>

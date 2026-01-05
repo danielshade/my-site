@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Гільдія Тіней - Головна</title>
+    <title>Гільдія Тіней</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <div id="magic-cursor"></div>
+
     <header class="site-header">
-        <div class="logo-container">
-            <h1 class="site-title">Гільдія Тіней</h1>
-            <p class="author-pseudo">Світ очима Тінника</p>
-        </div>
+        <h1 class="site-title">Гільдія Тіней</h1>
         <nav class="main-nav">
             <ul>
                 <li><a href="index.html">Головна</a></li>
                 <li><a href="books.html">Книги</a></li>
-                <li><a href="characters.html">Персонажі</a></li> <li><a href="about.html">Про автора</a></li>
+                <li><a href="characters.html">Персонажі</a></li>
+                <li><a href="about.html">Автор</a></li>
                 <li><a href="blog.html">Новини</a></li>
-                <li><a href="signup.html" style="color: var(--accent-green); font-weight: bold;">Вступ</a></li>
+                <li><a href="signup.html" style="color: var(--accent-secondary);">Вступ</a></li>
             </ul>
         </nav>
     </header>
@@ -28,79 +28,56 @@
         <div class="hero-content">
             <h1>Вітаємо в Гільдії</h1>
             <p>Тут оживають історії, народжені в сутінках.</p>
-            <a href="books.html" class="btn">Відкрити Бібліотеку</a>
         </div>
     </section>
 
     <main class="container">
-        <div class="section-title-wrapper">
-            <h2>Остання Новинка</h2>
-        </div>
-        
-        <div class="book-grid">
-            <div class="book-card">
-                <img src="images/book1.jpg" alt="Обкладинка Посміхнися Відчаю">
-                <div class="book-card-content">
-                    <h3>Посміхнися Відчаю</h3>
-                    <p>Жахаюча мить, коли небо впало на землю. Безсмертя стало ознакою гріха. Новий Світ на старих землях почав розбудовувати свої холодні машини. Серед мороку де-не-де б'ються маленькі іскри.</p>
-                    <a href="books.html" class="btn">Дізнатися більше</a>
-                </div>
-            </div>
-        </div>
-    </main>
+        </main>
 
-    <footer class="site-footer">
-        <div class="social-links">
-            <a href="https://t.me/+EIVbKcgmEjAzOGJi" target="_blank">Telegram</a>
-            <a href="https://www.youtube.com/@mr.danielshade6575" target="_blank">Youtube</a>
-            <a href="https://arkush.net/user/15018" target="_blank">Аркуш</a>
-        </div>
-        <p>© 2025 Тінник. Всі права захищено.</p>
-    </footer>
-
-    <div class="music-player-container">
-        <button id="musicToggle" class="music-toggle-btn">🎵</button>
-        <div id="player-wrapper" style="display: none;">
-            <div id="youtubePlayer"></div>
-        </div>
+    <div class="controls-container">
+        <button class="control-btn" id="themeBtn">🌒</button>
+        <button class="control-btn" id="musicToggle">🎵</button>
     </div>
+
+    <div id="youtubePlayer" style="display:none;"></div>
 
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
+        // 1. МАГІЧНИЙ КУРСОР
+        const cursor = document.getElementById('magic-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX - 10 + 'px';
+            cursor.style.top = e.clientY - 10 + 'px';
+        });
+
+        // 2. ПЕРЕМИКАЧ ТЕМ
+        const themeBtn = document.getElementById('themeBtn');
+        if (localStorage.getItem('theme') === 'abyss') {
+            document.body.classList.add('abyss-mode');
+            themeBtn.textContent = '🌑';
+        }
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('abyss-mode');
+            const isAbyss = document.body.classList.contains('abyss-mode');
+            localStorage.setItem('theme', isAbyss ? 'abyss' : 'twilight');
+            themeBtn.textContent = isAbyss ? '🌑' : '🌒';
+        });
+
+        // 3. МУЗИЧНИЙ ПЛЕЄР
         let player;
         let isPlaying = false;
-        const btn = document.getElementById('musicToggle');
-
-        // Функція ініціалізації плеєра від Google API
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('youtubePlayer', {
-                height: '0',
-                width: '0',
-                videoId: 'dzCuwjHFd7M', // ВАШ ID ВІДЕО
-                playerVars: {
-                    'autoplay': 0,
-                    'loop': 1,
-                    'playlist': 'dzCuwjHFd7M', // Для повтору
-                    'controls': 0
-                },
-                events: {
-                    'onReady': onPlayerReady
-                }
-            });
-        }
-
-        function onPlayerReady(event) {
-            btn.addEventListener('click', () => {
-                if (!isPlaying) {
-                    player.playVideo();
-                    btn.textContent = '⏸️';
-                    btn.style.backgroundColor = '#c5a059'; // Змінюємо на золото, коли грає
-                } else {
-                    player.pauseVideo();
-                    btn.textContent = '🎵';
-                    btn.style.backgroundColor = '#1a5c40'; // Повертаємо зелений
-                }
-                isPlaying = !isPlaying;
+                height: '0', width: '0',
+                videoId: 'dzCuwjHFd7M',
+                playerVars: { 'autoplay': 0, 'loop': 1, 'playlist': 'dzCuwjHFd7M' },
+                events: { 'onReady': () => {
+                    document.getElementById('musicToggle').addEventListener('click', () => {
+                        if (!isPlaying) { player.playVideo(); document.getElementById('musicToggle').textContent = '⏸️'; }
+                        else { player.pauseVideo(); document.getElementById('musicToggle').textContent = '🎵'; }
+                        isPlaying = !isPlaying;
+                    });
+                }}
             });
         }
     </script>
