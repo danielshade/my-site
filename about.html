@@ -11,18 +11,15 @@
     <div id="magic-cursor"></div>
 
     <header class="site-header">
-        <div class="logo-container">
-            <h1 class="site-title">Гільдія Тіней</h1>
-            <p class="author-pseudo">Світ очима Тінника</p>
-        </div>
+        <h1 class="site-title">Гільдія Тіней</h1>
         <nav class="main-nav">
             <ul>
                 <li><a href="index.html">Головна</a></li>
                 <li><a href="books.html">Книги</a></li>
                 <li><a href="characters.html">Персонажі</a></li>
-                <li><a href="about.html" class="active">Про автора</a></li>
+                <li><a href="about.html" class="active">Автор</a></li>
                 <li><a href="blog.html">Новини</a></li>
-                <li><a href="signup.html" style="color: var(--accent-secondary); font-weight: bold;">Вступ</a></li>
+                <li><a href="signup.html" style="color: var(--accent-secondary);">Вступ</a></li>
             </ul>
         </nav>
     </header>
@@ -30,16 +27,16 @@
     <section class="hero-section hero-about">
         <div class="hero-content">
             <h1>Кабінет Тіні</h1>
-            <p>Місце, де народжуються чудовиська.</p>
+            <p>Місце, де слова стають плоттю.</p>
         </div>
     </section>
 
     <main class="container">
         
-        <section class="about-container">
-            <div class="about-image">
+        <div class="about-grid-layout">
+            <div class="about-image-side">
                 <div class="author-glow-card">
-                    <img src="images/author.png" alt="Тінник" style="max-width: 100%; height: auto;">
+                    <img src="images/author.png" alt="Тінник">
                 </div>
                 
                 <div class="author-stats">
@@ -48,73 +45,44 @@
                         <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 95%;"></div></div>
                     </div>
                     <div class="stat-row">
-                        <div class="stat-label"><span>Темна фантазія</span><span>100%</span></div>
+                        <div class="stat-label"><span>Темний Лор</span><span>100%</span></div>
                         <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 100%;"></div></div>
                     </div>
-                    <div class="stat-row">
-                        <div class="stat-label"><span>Стійкість до дедлайнів</span><span>40%</span></div>
-                        <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 40%;"></div></div>
-                    </div>
-                    <div class="stat-row">
-                        <div class="stat-label"><span>Знання Лору</span><span>88%</span></div>
-                        <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 88%;"></div></div>
-                    </div>
                 </div>
             </div>
 
-            <div class="about-text">
-                <h3 style="font-size: 2.5em; margin-bottom: 10px;">Тінник</h3>
-                <span class="cycle-badge" style="font-size: 1em; padding: 5px 15px;">Архітектор Світів</span>
-                
-                <p style="margin-top: 30px; font-size: 1.2em; line-height: 1.8;">
-                    Я не просто пишу книги. Я будую в'язниці для ваших страхів та палаци для ваших мрій. Моє перо занурене в чорнило нічного неба, а мої герої — це віддзеркалення тих, кого ми боїмося побачити в дзеркалі.
-                </p>
-                <p>
-                    <strong>Гільдія Тіней</strong> — це мій маніфест. Тут правда завжди прихована під маскою, а кожен фінал — це лише початок нової, ще темнішої пригоди. 
-                </p>
-
-                <div class="social-links" style="text-align: left; margin-top: 30px;">
-                    <a href="https://arkush.net/user/15018" class="btn">Мої Сувої на Аркуші</a>
-                </div>
+            <div class="about-text-side">
+                <h3>Тінник</h3>
+                <p>Я — літописець історій, що народжуються на межі світла та темряви. Моя мета — створити всесвіт, у якому ви зможете загубитися і знайти себе одночасно.</p>
+                <p>Кожен рядок моїх книг — це цеглина у фундаменті "Гільдії Тіней". Ласкаво просимо до мого світу.</p>
+                <a href="https://arkush.net/user/15018" target="_blank" class="btn">Читати на Аркуші</a>
             </div>
+        </div>
+
+        <section class="quote-section">
+            <p>"Тіні існують лише там, де є світло. Не бійтеся темряви, бо вона — доказ того, що десь поруч сяє надія."</p>
         </section>
 
-        <section class="author-quote-block" style="margin: 80px 0;">
-            <p class="author-quote-text">
-                "Мої слова — це стежка в тумані. Ви можете не бачити, куди вона веде, але ви відчуваєте кожен крок своєю душею."
-            </p>
-            <p style="text-align: right; color: var(--accent-primary); font-family: var(--font-title); font-size: 1.5em;">— Тінник</p>
-        </section>
-
-        <h2 style="text-align: center; margin-bottom: 40px;">Арсенал Літописця</h2>
-        <div class="facts-grid">
-            <div class="fact-card">
-                <div class="fact-icon">🌑</div>
-                <h3 class="fact-title">Джерело сили</h3>
-                <p>Глибокий нічний спокій, коли світ замовкає, а тіні починають розмовляти.</p>
+        <h2 style="text-align: center; font-family: var(--font-title); color: var(--accent-primary); margin-bottom: 40px;">Арсенал Літописця</h2>
+        <div class="arsenal-grid">
+            <div class="arsenal-card">
+                <span>🌑</span>
+                <h4>Джерело</h4>
+                <p>Нічний спокій та старі легенди.</p>
             </div>
-            <div class="fact-card">
-                <div class="fact-icon">⚔️</div>
-                <h3 class="fact-title">Зброя</h3>
-                <p>Клавіатура, що знає смак кави, та уява, що не знає кордонів.</p>
+            <div class="arsenal-card">
+                <span>⚔️</span>
+                <h4>Зброя</h4>
+                <p>Уява, що не знає кордонів.</p>
             </div>
-            <div class="fact-card">
-                <div class="fact-icon">📜</div>
-                <h3 class="fact-title">Місія</h3>
-                <p>Змусити вас відчути те, про що ви боялися навіть подумати.</p>
+            <div class="arsenal-card">
+                <span>📜</span>
+                <h4>Місія</h4>
+                <p>Створювати світи, що залишають слід.</p>
             </div>
         </div>
 
     </main>
-
-    <footer class="site-footer">
-        <div class="social-links">
-            <a href="https://t.me/+EIVbKcgmEjAzOGJi" target="_blank">Telegram</a>
-            <a href="https://www.youtube.com/@mr.danielshade6575" target="_blank">Youtube</a>
-            <a href="https://arkush.net/user/15018" target="_blank">Аркуш</a>
-        </div>
-        <p>© 2025 Тінник. Всі права захищено.</p>
-    </footer>
 
     <div class="controls-container">
         <button class="control-btn" id="themeBtn">🌒</button>
@@ -125,14 +93,14 @@
 
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        // МАГІЧНИЙ КУРСОР
+        // КУРСОР
         const cursor = document.getElementById('magic-cursor');
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX - 10 + 'px';
             cursor.style.top = e.clientY - 10 + 'px';
         });
 
-        // ПЕРЕМИКАЧ ТЕМ
+        // ТЕМА
         const themeBtn = document.getElementById('themeBtn');
         if (localStorage.getItem('theme') === 'abyss') {
             document.body.classList.add('abyss-mode');
@@ -145,7 +113,7 @@
             themeBtn.textContent = isAbyss ? '🌑' : '🌒';
         });
 
-        // ПЛЕЄР
+        // МУЗИКА
         let player;
         let isPlaying = false;
         function onYouTubeIframeAPIReady() {
