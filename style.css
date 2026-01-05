@@ -1,3 +1,4 @@
+/* --- ОСНОВНІ НАЛАШТУВАННЯ --- */
 @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Lora:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
@@ -11,57 +12,68 @@
     --font-body: 'Lora', serif;
 }
 
-/* Режим "Безодня" */
 body.abyss-mode {
     --accent-primary: #a0aec0; /* Срібло */
-    --accent-secondary: #2c5282; /* Глибокий синій */
+    --accent-secondary: #2c5282; /* Синій */
 }
+
+* { box-sizing: border-box; } /* Щоб розміри не "пливли" */
 
 body {
     font-family: var(--font-body);
     margin: 0;
     background-color: var(--bg-dark);
     color: var(--text-main);
-    line-height: 1.8;
+    line-height: 1.6;
     overflow-x: hidden;
 }
 
-/* МАГІЧНИЙ КУРСОР */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+/* --- МАГІЧНИЙ КУРСОР --- */
 #magic-cursor {
-    width: 20px;
-    height: 20px;
+    width: 20px; height: 20px;
     background: var(--accent-primary);
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
     z-index: 99999;
     mix-blend-mode: difference;
-    transition: transform 0.1s ease-out;
     filter: blur(4px);
+    transition: transform 0.1s ease-out;
 }
 
 @media (max-width: 768px) { #magic-cursor { display: none; } }
 
-/* ХЕДЕР ТА НАВІГАЦІЯ */
+/* --- ХЕДЕР ТА МЕНЮ --- */
 .site-header {
-    background-color: rgba(18, 18, 18, 0.95);
-    padding: 15px 40px;
+    background-color: rgba(18, 18, 18, 0.98);
+    padding: 15px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid var(--accent-primary);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    border-bottom: 2px solid var(--accent-primary);
+    position: sticky; top: 0; z-index: 1000;
 }
 
-.site-title { font-family: var(--font-title); color: var(--accent-primary); margin: 0; }
+.site-title { font-family: var(--font-title); color: var(--accent-primary); margin: 0; font-size: 1.8em; }
+.author-pseudo { font-size: 0.8em; color: var(--text-muted); margin: 0; }
 
-.main-nav ul { list-style: none; display: flex; gap: 20px; margin: 0; }
-.main-nav a { font-family: var(--font-title); color: var(--text-main); transition: 0.3s; }
+.main-nav ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; }
+.main-nav a { 
+    text-decoration: none; 
+    color: var(--text-main); 
+    font-family: var(--font-title);
+    transition: 0.3s;
+}
 .main-nav a:hover, .main-nav a.active { color: var(--accent-primary); }
 
-/* HERO SECTION */
+/* --- HERO SECTION --- */
 .hero-section {
     background-size: cover;
     background-position: center;
@@ -79,60 +91,74 @@ body {
     background: rgba(0,0,0,0.6);
 }
 
-.hero-content { position: relative; z-index: 2; padding: 20px; }
-.hero-content h1 { font-family: var(--font-title); font-size: 3.5em; color: var(--accent-primary); margin: 0; }
+.hero-content { position: relative; z-index: 2; padding: 0 20px; }
+.hero-content h1 { font-family: var(--font-title); font-size: 3em; color: var(--accent-primary); margin: 0; }
 
-/* ІНДИВІДУАЛЬНІ ФОНИ */
+/* Фони */
 .hero-home { background-image: url('images/hero-bg.jpg'); height: 80vh; }
 .hero-books { background-image: url('images/books-bg.jpg'); }
 .hero-characters { background-image: url('images/characters-bg.jpg'); }
 .hero-about { background-image: url('images/about-bg.jpg'); }
 .hero-blog { background-image: url('images/blog-bg.jpg'); }
+.hero-socials { background-image: url('images/socials-bg.jpg'); }
 
-/* КНОПКИ ТА ЕЛЕМЕНТИ */
+/* --- КАРТКИ (Книги та Персонажі) --- */
+.book-grid, .character-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.book-card, .character-card {
+    background: var(--bg-card);
+    border: 1px solid #333;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.book-card:hover, .character-card:hover { border-color: var(--accent-primary); transform: translateY(-5px); }
+
+.book-card img, .character-card img { width: 100%; height: 400px; object-fit: cover; }
+.book-card-content, .character-info { padding: 20px; }
+
+/* --- КНОПКИ --- */
 .btn {
     display: inline-block;
-    padding: 12px 30px;
+    padding: 10px 25px;
     background: linear-gradient(45deg, var(--accent-secondary), #000);
     color: #fff;
     border: 1px solid var(--accent-primary);
     font-family: var(--font-title);
+    text-decoration: none;
     cursor: pointer;
     transition: 0.3s;
-    text-decoration: none;
 }
 
-.btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px var(--accent-secondary); }
-
-/* ПЕРЕМИКАЧІ В КУТКУ */
+/* --- ПАНЕЛЬ КЕРУВАННЯ --- */
 .controls-container {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    z-index: 10001;
+    position: fixed; bottom: 20px; right: 20px;
+    display: flex; flex-direction: column; gap: 10px; z-index: 10001;
 }
 
 .control-btn {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: var(--bg-card);
-    border: 2px solid var(--accent-primary);
-    color: var(--accent-primary);
-    cursor: pointer;
-    font-size: 1.2em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.3s;
+    width: 45px; height: 45px; border-radius: 50%;
+    background: var(--bg-card); border: 2px solid var(--accent-primary);
+    color: var(--accent-primary); cursor: pointer; font-size: 1.2em;
+    display: flex; align-items: center; justify-content: center;
 }
 
-/* АДАПТИВНІСТЬ */
+/* --- АДАПТИВНІСТЬ --- */
 @media (max-width: 768px) {
-    .site-header { flex-direction: column; gap: 15px; }
-    .hero-content h1 { font-size: 2em; }
-    .main-nav ul { flex-wrap: wrap; justify-content: center; padding: 0; }
+    .site-header { flex-direction: column; text-align: center; }
+    .main-nav ul { gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 15px; }
+    .hero-content h1 { font-size: 1.8em; }
+    .about-container { grid-template-columns: 1fr; }
+    .book-grid, .character-grid { grid-template-columns: 1fr; width: 90%; margin: 0 auto; }
 }
+
+/* --- СПЕЦІАЛЬНІ СТИЛІ --- */
+.category-nav { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 30px; }
+.category-nav a { padding: 8px 15px; border: 1px solid var(--accent-primary); color: var(--accent-primary); text-decoration: none; border-radius: 20px; }
+.cycle-badge { background: var(--accent-secondary); color: white; padding: 3px 8px; font-size: 0.7em; border-radius: 4px; }
+.social-link-button { display: block; padding: 20px; background: var(--bg-card); border: 1px solid #333; color: var(--accent-primary); text-decoration: none; margin-bottom: 15px; border-radius: 8px; text-align: center; }
